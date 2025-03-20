@@ -1,0 +1,295 @@
+[gd_scene load_steps=20 format=3 uid="uid://d04s18ufwbcq1"]
+
+[ext_resource type="Script" uid="uid://b28y4ix4kom3l" path="res://menus_/DeathMenu.cs" id="1_4gcll"]
+[ext_resource type="Theme" uid="uid://bf0p2054wakan" path="res://themes/Vbox.tres" id="2_if1mk"]
+[ext_resource type="PackedScene" uid="uid://c1b3f0s148uog" path="res://gui/basic_button.tscn" id="3_wowul"]
+[ext_resource type="FontFile" uid="uid://cl160oerrt7bv" path="res://src/fonts/PressStart2P-Regular.ttf" id="4_rmo6f"]
+[ext_resource type="Shader" uid="uid://bfu50fwbmtjqo" path="res://menus_/Glitch.gdshader" id="5_q1lit"]
+[ext_resource type="PackedScene" uid="uid://bombj4bmgqx6u" path="res://gui/high_score.tscn" id="6_kj007"]
+[ext_resource type="PackedScene" uid="uid://dbmacvrci87gx" path="res://database.tscn" id="7_kiu10"]
+
+[sub_resource type="FontVariation" id="FontVariation_oh0jo"]
+base_font = ExtResource("4_rmo6f")
+spacing_space = -26
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6rud"]
+font = SubResource("FontVariation_oh0jo")
+font_size = 48
+font_color = Color(1, 1, 0, 1)
+shadow_size = 5
+shadow_color = Color(1, 0.52549, 0, 1)
+shadow_offset = Vector2(4.53, 4.355)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_db02u"]
+shader = ExtResource("5_q1lit")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.613
+shader_parameter/shake_speed = 8.87
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.005
+
+[sub_resource type="FontVariation" id="FontVariation_itr44"]
+base_font = ExtResource("4_rmo6f")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5c51c"]
+font = SubResource("FontVariation_itr44")
+font_color = Color(1, 1, 0, 1)
+shadow_color = Color(1, 0.52549, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r76i1"]
+bg_color = Color(0.05, 0.05, 0.05, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="FontVariation" id="FontVariation_67fua"]
+base_font = ExtResource("4_rmo6f")
+
+[sub_resource type="LabelSettings" id="LabelSettings_wjfg2"]
+font = SubResource("FontVariation_67fua")
+font_color = Color(1, 1, 0, 1)
+shadow_size = 2
+shadow_color = Color(1, 0.52549, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_i4fam"]
+base_font = ExtResource("4_rmo6f")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gody"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(1, 0.52549, 0, 1)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wg3s2"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofvj1"]
+bg_color = Color(0.67, 0.67, 0.3082, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.66, 0.49984, 0.3168, 1)
+
+[node name="DeathMenu" type="Control" node_paths=PackedStringArray("RegisterContainer", "OptionsContainer", "RegisterButton", "Time", "Kills", "Points", "Level", "FirstButton")]
+visible = false
+z_index = 50
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4gcll")
+RegisterContainer = NodePath("Panel")
+OptionsContainer = NodePath("VBoxContainer")
+RegisterButton = NodePath("Panel/VBoxContainer2/HBoxContainer/RegisterButton")
+Time = NodePath("GridContainer/Time")
+Kills = NodePath("GridContainer/Kills")
+Points = NodePath("GridContainer/Points")
+Level = NodePath("GridContainer/Level")
+FirstButton = NodePath("Panel/VBoxContainer2/LineEdit")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = 5.0
+offset_right = 115.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_if1mk")
+
+[node name="RetryButton" parent="VBoxContainer" instance=ExtResource("3_wowul")]
+layout_mode = 2
+text = "RECOMEÇAR"
+
+[node name="HighscoreButton" parent="VBoxContainer" instance=ExtResource("3_wowul")]
+layout_mode = 2
+text = "HIGHSCORE"
+
+[node name="MainMenuButton" parent="VBoxContainer" instance=ExtResource("3_wowul")]
+layout_mode = 2
+text = "MENU"
+
+[node name="QuitButton" parent="VBoxContainer" instance=ExtResource("3_wowul")]
+visible = false
+layout_mode = 2
+text = "QUIT"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -143.095
+offset_right = 179.0
+offset_bottom = -95.095
+grow_horizontal = 2
+grow_vertical = 2
+text = "VOCE PERDEU"
+label_settings = SubResource("LabelSettings_v6rud")
+
+[node name="ColorRect" type="ColorRect" parent="Title"]
+visible = false
+material = SubResource("ShaderMaterial_db02u")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -64.505
+offset_right = 66.0
+offset_bottom = -24.505
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Time" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "⏳:"
+label_settings = SubResource("LabelSettings_5c51c")
+horizontal_alignment = 1
+
+[node name="Kills" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "💀:"
+label_settings = SubResource("LabelSettings_5c51c")
+horizontal_alignment = 1
+
+[node name="Points" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "PTS:"
+label_settings = SubResource("LabelSettings_5c51c")
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "LVL:"
+label_settings = SubResource("LabelSettings_5c51c")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r76i1")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -65.0
+offset_right = 128.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+text = "Deseja registrar 
+sua pontuação?"
+label_settings = SubResource("LabelSettings_wjfg2")
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_i4fam")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1gody")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wg3s2")
+placeholder_text = "Nome"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="NoRegisterButton" parent="Panel/VBoxContainer2/HBoxContainer" instance=ExtResource("3_wowul")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NÃO"
+
+[node name="RegisterButton" parent="Panel/VBoxContainer2/HBoxContainer" instance=ExtResource("3_wowul")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_disabled_color = Color(0.26, 0.26, 0.26, 1)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ofvj1")
+disabled = true
+text = "SIM"
+
+[node name="HighScore" parent="." node_paths=PackedStringArray("database") instance=ExtResource("6_kj007")]
+layout_mode = 1
+database = NodePath("../Database")
+
+[node name="Database" parent="." instance=ExtResource("7_kiu10")]
+
+[connection signal="pressed" from="VBoxContainer/RetryButton" to="." method="OnRetryButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/HighscoreButton" to="HighScore" method="OnHighscoreButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="OnMainMenuButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="OnQuitButtonPressed"]
+[connection signal="text_changed" from="Panel/VBoxContainer2/LineEdit" to="." method="OnLineEditTextChanged"]
+[connection signal="text_submitted" from="Panel/VBoxContainer2/LineEdit" to="." method="OnLineEditTextSubmitted"]
+[connection signal="button_down" from="Panel/VBoxContainer2/HBoxContainer/NoRegisterButton" to="." method="OnNoRegisterButtonButtonDown"]
+[connection signal="button_down" from="Panel/VBoxContainer2/HBoxContainer/RegisterButton" to="." method="OnRegisterButtonButtonDown"]

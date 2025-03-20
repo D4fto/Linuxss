@@ -1,0 +1,188 @@
+[gd_scene load_steps=17 format=3 uid="uid://dqla4x2etcl6q"]
+
+[ext_resource type="Script" uid="uid://cwcpusqm5mtol" path="res://gui/GuiOnGame.cs" id="1_uckui"]
+[ext_resource type="Script" uid="uid://dyic0523h4cs5" path="res://gui/LifeManager.cs" id="2_vbx23"]
+[ext_resource type="Script" uid="uid://phoemjqj48yw" path="res://gui/LevelBar.cs" id="3_qorts"]
+[ext_resource type="Script" uid="uid://wtd8bxlui1a5" path="res://gui/Done.cs" id="4_eommf"]
+[ext_resource type="Texture2D" uid="uid://y5krwvb6qq7m" path="res://src/imgs/shiny.png" id="5_g72d2"]
+[ext_resource type="Script" uid="uid://h2e1tn1bp22y" path="res://gui/ShinyPlayer.cs" id="6_6swnx"]
+[ext_resource type="FontFile" uid="uid://cl160oerrt7bv" path="res://src/fonts/PressStart2P-Regular.ttf" id="7_4u3i4"]
+[ext_resource type="Script" uid="uid://c47k6m1boyjlr" path="res://gui/LevelLabel.cs" id="9_fijfx"]
+[ext_resource type="Script" uid="uid://ddqh3krmft0jl" path="res://gui/TimeCount.cs" id="9_o4uwv"]
+
+[sub_resource type="Animation" id="Animation_kak1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_uvykk"]
+resource_name = "shiny"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.210225, 1),
+"update": 0,
+"values": [Vector2(-51, -7), Vector2(1000, -7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tov3g"]
+_data = {
+&"RESET": SubResource("Animation_kak1r"),
+&"shiny": SubResource("Animation_uvykk")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_6i53t"]
+font = ExtResource("7_4u3i4")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_pcm6u"]
+font = ExtResource("7_4u3i4")
+font_size = 20
+font_color = Color(1, 1, 0, 1)
+shadow_size = 2
+shadow_color = Color(1, 0.52549, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_rvyn8"]
+base_font = ExtResource("7_4u3i4")
+spacing_space = -5
+spacing_top = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_0d64k"]
+font = SubResource("FontVariation_rvyn8")
+
+[node name="GuiOnGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uckui")
+
+[node name="LifeManager" type="Node" parent="."]
+script = ExtResource("2_vbx23")
+
+[node name="LevelBar" type="ColorRect" parent="." node_paths=PackedStringArray("done")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.11, 0.11, 0.11, 0.701961)
+script = ExtResource("3_qorts")
+done = NodePath("Done")
+MaxValue = 25.0
+
+[node name="ColorRect" type="ColorRect" parent="LevelBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.12, 0.12, 0.12, 0.843137)
+
+[node name="Done" type="ColorRect" parent="LevelBar"]
+layout_mode = 1
+offset_right = 340.245
+offset_bottom = 20.0
+color = Color(1, 1, 0, 1)
+script = ExtResource("4_eommf")
+
+[node name="ColorRect" type="ColorRect" parent="LevelBar/Done"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_right = 340.0
+grow_vertical = 0
+color = Color(1, 0.52549, 0, 1)
+
+[node name="Shiny" type="Sprite2D" parent="LevelBar/Done/ColorRect"]
+modulate = Color(1, 1, 1, 0.658824)
+position = Vector2(-51, -7)
+texture = ExtResource("5_g72d2")
+
+[node name="ShinyPlayer" type="AnimationPlayer" parent="LevelBar/Done/ColorRect/Shiny"]
+libraries = {
+"": SubResource("AnimationLibrary_tov3g")
+}
+speed_scale = 0.314
+script = ExtResource("6_6swnx")
+
+[node name="LevelLabel" type="Label" parent="LevelBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "LVL:1"
+label_settings = SubResource("LabelSettings_6i53t")
+script = ExtResource("9_fijfx")
+
+[node name="TimeCount" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 25.0
+offset_right = 50.0
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_pcm6u")
+script = ExtResource("9_o4uwv")
+
+[node name="Timer" type="Timer" parent="TimeCount"]
+process_callback = 0
+autostart = true
+
+[node name="Points" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "PTS:0"
+label_settings = SubResource("LabelSettings_0d64k")
+
+[connection signal="LifeChange" from="." to="LifeManager" method="OnGuiOnGameLifeChange"]
+[connection signal="PointsChange" from="." to="LevelBar" method="OnGuiOnGamePointsChange"]
+[connection signal="Change" from="LevelBar" to="LevelBar/Done" method="OnLevelBarChange"]
+[connection signal="IncreaseLevel" from="LevelBar" to="." method="OnLevelBarIncreaseLevel"]
+[connection signal="IncreaseLevel" from="LevelBar" to="LevelBar/LevelLabel" method="OnLevelBarIncreaseLevel"]
+[connection signal="animation_finished" from="LevelBar/Done/ColorRect/Shiny/ShinyPlayer" to="LevelBar/Done/ColorRect/Shiny/ShinyPlayer" method="OnAnimationFinished"]
+[connection signal="timeout" from="TimeCount/Timer" to="TimeCount" method="OnTimerTimeout"]

@@ -1,0 +1,250 @@
+[gd_scene load_steps=22 format=3 uid="uid://cxpnmrmx2o73o"]
+
+[ext_resource type="Script" uid="uid://c61r8vnhgphvo" path="res://player/Player.cs" id="1_mf3h1"]
+[ext_resource type="Texture2D" uid="uid://cbybsn0owg32o" path="res://src/imgs/narci.png" id="2_6f4cw"]
+[ext_resource type="Script" uid="uid://clv4hup37y6m2" path="res://player/Marker2dPlayer.cs" id="2_l0x27"]
+[ext_resource type="Shader" uid="uid://yjwr4bax3e0f" path="res://player/blackHole.gdshader" id="3_8blb1"]
+[ext_resource type="Script" uid="uid://72koafl4s3q4" path="res://player/AnimationPlayerPlayer.cs" id="4_bsl27"]
+[ext_resource type="PackedScene" uid="uid://g7bqq1hwrl82" path="res://Components/hitbox.tscn" id="4_liygk"]
+[ext_resource type="AudioStream" uid="uid://b87f01gsao8p" path="res://src/audios/laserShoot.wav" id="5_ob8us"]
+[ext_resource type="AudioStream" uid="uid://b8o7nyqmklu8i" path="res://src/audios/hitHurt.wav" id="6_gn4t6"]
+[ext_resource type="Script" uid="uid://cfkm6c5vy7nv7" path="res://player/PlayerCamera2d.cs" id="6_gpgen"]
+[ext_resource type="AudioStream" uid="uid://bdc0bed66pkpa" path="res://src/audios/zaowlrd.mp3" id="9_6dhp7"]
+[ext_resource type="FontFile" uid="uid://cl160oerrt7bv" path="res://src/fonts/PressStart2P-Regular.ttf" id="11_i82el"]
+
+[sub_resource type="Animation" id="Animation_66yxh"]
+resource_name = "Death"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(0.450625, 3.605, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../NickName:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_e2w4m"]
+length = 0.001
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../NickName:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhlb8"]
+_data = {
+&"Death": SubResource("Animation_66yxh"),
+&"RESET": SubResource("Animation_e2w4m")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ercf8"]
+shader = ExtResource("3_8blb1")
+
+[sub_resource type="Gradient" id="Gradient_p1dyn"]
+offsets = PackedFloat32Array(0.192825, 0.434978, 0.578475, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.72549, 1, 1, 1, 0.745932, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ke1dc"]
+gradient = SubResource("Gradient_p1dyn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.824786, 0.15812)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jiqt"]
+radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i45oj"]
+radius = 16.0
+
+[sub_resource type="FontVariation" id="FontVariation_r0ywv"]
+base_font = ExtResource("11_i82el")
+spacing_space = -5
+spacing_top = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_qiurk"]
+font = SubResource("FontVariation_r0ywv")
+font_size = 8
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+collision_mask = 0
+platform_floor_layers = 4294967040
+script = ExtResource("1_mf3h1")
+CollectDistance = 32
+MagneticDistance = 100
+
+[node name="Marker2D" type="Marker2D" parent="."]
+script = ExtResource("2_l0x27")
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
+texture = ExtResource("2_6f4cw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Marker2D/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_lhlb8")
+}
+script = ExtResource("4_bsl27")
+
+[node name="BulletSpawn" type="Marker2D" parent="Marker2D"]
+position = Vector2(10, 0)
+
+[node name="TextureRect" type="Sprite2D" parent="Marker2D"]
+visible = false
+material = SubResource("ShaderMaterial_ercf8")
+texture = SubResource("GradientTexture2D_ke1dc")
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1jiqt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.1
+drag_bottom_margin = 0.1
+script = ExtResource("6_gpgen")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+autostart = true
+
+[node name="Hitbox" parent="." instance=ExtResource("4_liygk")]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_i45oj")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Invincibility" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+one_shot = true
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ob8us")
+volume_db = 7.0
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gn4t6")
+volume_db = 10.0
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_6dhp7")
+
+[node name="NickName" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -34.0
+offset_right = 24.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+text = "Player"
+label_settings = SubResource("LabelSettings_qiurk")
+horizontal_alignment = 1
+
+[connection signal="InternalDeath" from="." to="." method="OnInternalDeath"]
+[connection signal="InternalDeath" from="." to="Marker2D/Sprite2D/AnimationPlayer" method="OnPlayerInternalDeath"]
+[connection signal="TakeDamage" from="." to="Camera2D" method="OnPlayerTakeDamage"]
+[connection signal="DeathAnimationfinished" from="Marker2D/Sprite2D/AnimationPlayer" to="." method="OnAnimationPlayerDeathAnimationfinished"]
+[connection signal="animation_finished" from="Marker2D/Sprite2D/AnimationPlayer" to="Marker2D/Sprite2D/AnimationPlayer" method="OnAnimationFinished"]
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
+[connection signal="EnemyEntered" from="Hitbox" to="." method="OnHitboxEnemyEntered"]
+[connection signal="EnemyExited" from="Hitbox" to="." method="OnHitboxEnemyExited"]
+[connection signal="timeout" from="Invincibility" to="." method="OnInvincibilityTimeout"]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2yavicev44rd"]
+
+[ext_resource type="Script" uid="uid://ba3wyyy0mqpaa" path="res://Enemies/Zap/Zap.cs" id="1_q1i7i"]
+[ext_resource type="Texture2D" uid="uid://clw60n0c7o2pa" path="res://src/imgs/Zapfiufiu.png" id="2_3r1yy"]
+[ext_resource type="PackedScene" uid="uid://c66l7743ryj2i" path="res://Components/enemy_damage_animation_component.tscn" id="3_xk1rv"]
+[ext_resource type="PackedScene" uid="uid://g7bqq1hwrl82" path="res://Components/hitbox.tscn" id="4_1k862"]
+[ext_resource type="PackedScene" uid="uid://cv3h2c08avsae" path="res://Components/health_component.tscn" id="5_c7r11"]
+[ext_resource type="PackedScene" uid="uid://cxpwhimsuxi28" path="res://Components/speed_component.tscn" id="6_3c8xx"]
+[ext_resource type="PackedScene" uid="uid://da0bcp0vsmk8e" path="res://Components/points_component.tscn" id="7_yk4wr"]
+[ext_resource type="PackedScene" uid="uid://bhibyevo6xpv5" path="res://Components/enemy_audio_component.tscn" id="8_lto4f"]
+[ext_resource type="AudioStream" uid="uid://csbbd0uwp4n5s" path="res://src/audios/hitHurt (1).wav" id="9_7wt6x"]
+[ext_resource type="AudioStream" uid="uid://bkhjdaarickk2" path="res://src/audios/explosion.wav" id="10_lmxdf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqdto"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4567"]
+radius = 8.06226
+
+[node name="Zap" type="CharacterBody2D" node_paths=PackedStringArray("Points", "speedComponent")]
+collision_layer = 4
+collision_mask = 5
+platform_floor_layers = 4294901760
+script = ExtResource("1_q1i7i")
+Points = NodePath("PointsComponent")
+speedComponent = NodePath("SpeedComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3r1yy")
+
+[node name="EnemyDamageAnimationComponent" parent="Sprite2D" node_paths=PackedStringArray("pointsComponent", "speedComponent", "collisionShape2D", "hitbox") instance=ExtResource("3_xk1rv")]
+pointsComponent = NodePath("../../PointsComponent")
+speedComponent = NodePath("../../SpeedComponent")
+collisionShape2D = NodePath("../../CollisionShape2D")
+hitbox = NodePath("../../Hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yqdto")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("HealthComponent") groups=["Enemies"] instance=ExtResource("4_1k862")]
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_s4567")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_c7r11")]
+MaxLife = 10
+
+[node name="SpeedComponent" parent="." instance=ExtResource("6_3c8xx")]
+Speed = 350.0
+
+[node name="PointsComponent" parent="." node_paths=PackedStringArray("PointsSpawn") instance=ExtResource("7_yk4wr")]
+Points = 6
+color = Color(0, 1, 0, 1)
+PointsSpawn = NodePath("..")
+
+[node name="EnemyAudioComponent" parent="." node_paths=PackedStringArray("Hurt", "Die") instance=ExtResource("8_lto4f")]
+Hurt = NodePath("../Hurt")
+Die = NodePath("../Die")
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_7wt6x")
+volume_db = 5.0
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_lmxdf")
+volume_db = -5.0
+
+[connection signal="Die" from="HealthComponent" to="Sprite2D/EnemyDamageAnimationComponent" method="OnHealthComponentDie"]
+[connection signal="Die" from="HealthComponent" to="PointsComponent" method="OnHealthComponentDie"]
+[connection signal="Die" from="HealthComponent" to="EnemyAudioComponent" method="OnHealthComponentDie"]
+[connection signal="TakeDamage" from="HealthComponent" to="Sprite2D/EnemyDamageAnimationComponent" method="OnHealthComponentTakeDamage"]
+[connection signal="TakeDamage" from="HealthComponent" to="EnemyAudioComponent" method="OnHealthComponentTakeDamage"]
+[connection signal="DirectionChange" from="SpeedComponent" to="." method="OnSpeedComponentDirectionChange"]
+[connection signal="UpdatePosition" from="SpeedComponent" to="." method="OnSpeedComponentUpdatePosition"]

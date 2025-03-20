@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da0bcp0vsmk8e"]
+
+[ext_resource type="Script" uid="uid://d0tam5bcou4mm" path="res://Components/PointsComponent.cs" id="1_lnqy8"]
+
+[node name="PointsComponent" type="Node"]
+script = ExtResource("1_lnqy8")

@@ -1,0 +1,180 @@
+[gd_scene load_steps=14 format=3 uid="uid://bombj4bmgqx6u"]
+
+[ext_resource type="Script" uid="uid://cdjw66tpi8x20" path="res://gui/HighScore.cs" id="1_rlkjj"]
+[ext_resource type="LabelSettings" uid="uid://dp2qsxnhoufj1" path="res://src/fonts/MenuTitle.tres" id="2_bbx4o"]
+[ext_resource type="LabelSettings" uid="uid://ctal5r6v5uik2" path="res://themes/highScore.tres" id="3_t2af7"]
+[ext_resource type="PackedScene" uid="uid://ceq8gpvdglkr7" path="res://gui/points_register.tscn" id="4_lqvd3"]
+[ext_resource type="Texture2D" uid="uid://b1w4byds3fgru" path="res://src/imgs/x.png" id="5_js4rf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6hyr"]
+bg_color = Color(0, 0, 0, 0.75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sh6s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0iglj"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpgcn"]
+bg_color = Color(1, 1, 0, 0.25)
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsxpr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbs6f"]
+bg_color = Color(0.1, 0.1, 0.1, 1)
+border_width_left = 4
+border_width_right = 4
+border_color = Color(1, 1, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wa5c0"]
+bg_color = Color(1, 1, 0, 0.5)
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1cwt"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[node name="HighScore" type="PanelContainer" node_paths=PackedStringArray("database", "container")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6hyr")
+script = ExtResource("1_rlkjj")
+database = NodePath("")
+container = NodePath("MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_right = 90
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "HIGHSCORE"
+label_settings = ExtResource("2_bbx4o")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxFlat_7sh6s")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0iglj")
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Nº"
+label_settings = ExtResource("3_t2af7")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cpgcn")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Nome"
+label_settings = ExtResource("3_t2af7")
+clip_text = true
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cpgcn")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Pontos"
+label_settings = ExtResource("3_t2af7")
+clip_text = true
+
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cpgcn")
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Level"
+label_settings = ExtResource("3_t2af7")
+clip_text = true
+
+[node name="VSeparator4" type="VSeparator" parent="MarginContainer/VBoxContainer2/PanelContainer/HBoxContainer13"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxFlat_rsxpr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_lbs6f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="PointsRegister" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("4_lqvd3")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_wa5c0")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxFlat_b1cwt")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_js4rf")
+texture_pressed = ExtResource("5_js4rf")
+texture_hover = ExtResource("5_js4rf")
+texture_disabled = ExtResource("5_js4rf")
+texture_focused = ExtResource("5_js4rf")
+
+[connection signal="pressed" from="TextureButton" to="." method="OnTextureButtonPressed"]

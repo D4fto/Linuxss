@@ -1,0 +1,14 @@
+Label
+MarginContainer
+Node
+AudioStreamPlayer
+Control
+PanelContainer
+ParallaxLayer
+TextureButton
+HSeparator
+VSeparator
+Panel
+VBoxContainer
+ColorRect
+HBoxContainer

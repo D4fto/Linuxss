@@ -1,0 +1,142 @@
+[gd_scene load_steps=20 format=3 uid="uid://laaeblfry2nh"]
+
+[ext_resource type="Script" uid="uid://cgj7bqm0wu7c5" path="res://Enemies/Chrome/Chrome.cs" id="1_o5j2n"]
+[ext_resource type="Texture2D" uid="uid://bs0xlwd7h5nr4" path="res://src/imgs/chrome.png" id="2_dipan"]
+[ext_resource type="PackedScene" uid="uid://c66l7743ryj2i" path="res://Components/enemy_damage_animation_component.tscn" id="3_3elv4"]
+[ext_resource type="AnimationLibrary" uid="uid://un1cum50eyu4" path="res://Animations/enemiesDamage.res" id="4_do6a1"]
+[ext_resource type="Script" uid="uid://x1ymuocv0oc2" path="res://Enemies/Chrome/CollisionShape2d.cs" id="5_rroof"]
+[ext_resource type="PackedScene" uid="uid://g7bqq1hwrl82" path="res://Components/hitbox.tscn" id="6_0w4px"]
+[ext_resource type="PackedScene" uid="uid://cv3h2c08avsae" path="res://Components/health_component.tscn" id="7_weoah"]
+[ext_resource type="PackedScene" uid="uid://da0bcp0vsmk8e" path="res://Components/points_component.tscn" id="8_qme80"]
+[ext_resource type="PackedScene" uid="uid://cxpwhimsuxi28" path="res://Components/speed_component.tscn" id="8_t3ndu"]
+[ext_resource type="PackedScene" uid="uid://bhibyevo6xpv5" path="res://Components/enemy_audio_component.tscn" id="9_xodp2"]
+[ext_resource type="AudioStream" uid="uid://csbbd0uwp4n5s" path="res://src/audios/hitHurt (1).wav" id="11_hcklc"]
+[ext_resource type="AudioStream" uid="uid://bkhjdaarickk2" path="res://src/audios/explosion.wav" id="12_o7n0u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40hjq"]
+atlas = ExtResource("2_dipan")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c3o1"]
+atlas = ExtResource("2_dipan")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mx0wj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40hjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c3o1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_ed66a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrblq"]
+_data = {
+&"RESET": SubResource("Animation_ed66a")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nlh0"]
+radius = 17.0294
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uilv6"]
+radius = 13.0
+
+[node name="Chrome" type="CharacterBody2D" node_paths=PackedStringArray("Points", "speedComponent")]
+process_priority = -1
+process_physics_priority = -1
+collision_layer = 2
+collision_mask = 7
+platform_floor_layers = 4294967040
+script = ExtResource("1_o5j2n")
+Points = NodePath("PointsComponent")
+speedComponent = NodePath("SpeedComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mx0wj")
+autoplay = "default"
+frame_progress = 0.707448
+
+[node name="EnemyDamageAnimationComponent" parent="AnimatedSprite2D" node_paths=PackedStringArray("pointsComponent", "speedComponent", "collisionShape2D", "hitbox") instance=ExtResource("3_3elv4")]
+libraries = {
+"": SubResource("AnimationLibrary_jrblq"),
+"enemiesDamage": ExtResource("4_do6a1")
+}
+pointsComponent = NodePath("../../PointsComponent")
+speedComponent = NodePath("../../SpeedComponent")
+collisionShape2D = NodePath("../../CollisionShape2D")
+hitbox = NodePath("../../Hitbox")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("HealthComponent") groups=["Enemies"] instance=ExtResource("6_0w4px")]
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+process_priority = -1
+process_physics_priority = -1
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+physics_interpolation_mode = 2
+shape = SubResource("CircleShape2D_3nlh0")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_priority = -2
+process_physics_priority = -2
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+physics_interpolation_mode = 2
+shape = SubResource("CircleShape2D_uilv6")
+script = ExtResource("5_rroof")
+
+[node name="HealthComponent" parent="." instance=ExtResource("7_weoah")]
+MaxLife = 40
+
+[node name="SpeedComponent" parent="." instance=ExtResource("8_t3ndu")]
+Speed = 200.0
+
+[node name="PointsComponent" parent="." node_paths=PackedStringArray("PointsSpawn") instance=ExtResource("8_qme80")]
+Points = 5
+color = Color(0, 0.721569, 1, 1)
+PointsSpawn = NodePath("..")
+
+[node name="EnemyAudioComponent" parent="." node_paths=PackedStringArray("Hurt", "Die") instance=ExtResource("9_xodp2")]
+Hurt = NodePath("../Hurt")
+Die = NodePath("../Die")
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_hcklc")
+volume_db = 5.0
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_o7n0u")
+volume_db = -5.0
+max_distance = 1000.0
+
+[connection signal="Die" from="HealthComponent" to="AnimatedSprite2D/EnemyDamageAnimationComponent" method="OnHealthComponentDie"]
+[connection signal="Die" from="HealthComponent" to="PointsComponent" method="OnHealthComponentDie"]
+[connection signal="Die" from="HealthComponent" to="EnemyAudioComponent" method="OnHealthComponentDie"]
+[connection signal="TakeDamage" from="HealthComponent" to="AnimatedSprite2D/EnemyDamageAnimationComponent" method="OnHealthComponentTakeDamage"]
+[connection signal="TakeDamage" from="HealthComponent" to="EnemyAudioComponent" method="OnHealthComponentTakeDamage"]
+[connection signal="DirectionChange" from="SpeedComponent" to="." method="OnSpeedComponentDirectionChange"]
+[connection signal="UpdatePosition" from="SpeedComponent" to="." method="OnSpeedComponentUpdatePosition"]

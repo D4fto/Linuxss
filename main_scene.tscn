@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjj71kk5uedpj"]
+
+[ext_resource type="PackedScene" uid="uid://diqjrv7ikavdc" path="res://music.tscn" id="1_imku5"]
+[ext_resource type="Script" uid="uid://d3bahvwsajw7j" path="res://ActualScene.cs" id="2_0ivbq"]
+[ext_resource type="PackedScene" uid="uid://cbt3ip8eq1ryh" path="res://menus_/MainMenu.tscn" id="3_kx7er"]
+
+[node name="MainScene" type="Node"]
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("1_imku5")]
+volume_db = 0.0
+
+[node name="ActualScene" type="Node" parent="."]
+script = ExtResource("2_0ivbq")
+
+[node name="MainMenu" parent="ActualScene" instance=ExtResource("3_kx7er")]

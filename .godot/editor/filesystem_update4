@@ -1,0 +1,12 @@
+res://main_scene.tscn
+res://themes/MainMenu.tres
+res://src/fonts/MenuTitle.tres
+res://menus_/Glitch.gdshader
+res://themes/highScore.tres
+res://player/blackHole.gdshader
+res://shaders/player.gdshader
+res://shaders/level.gdshader
+res://shaders/white.gdshader
+res://menus_/MainMenu.tscn
+res://maps/Map0.tscn
+res://player/player.tscn

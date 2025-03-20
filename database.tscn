@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbmacvrci87gx"]
+
+[ext_resource type="Script" uid="uid://1mngpoexx33m" path="res://Database.cs" id="1_aepr7"]
+
+[node name="Database" type="Node"]
+script = ExtResource("1_aepr7")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://diqjrv7ikavdc"]
+
+[ext_resource type="AudioStream" uid="uid://f6nlwvrc7e2g" path="res://src/audios/Jeremy Blake - Powerup!.mp3" id="1_1yp36"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_1yp36")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

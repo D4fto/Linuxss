@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhibyevo6xpv5"]
+
+[ext_resource type="Script" uid="uid://dgg2lqy3b8m4b" path="res://Components/EnemyAudioComponent.cs" id="1_vdu31"]
+
+[node name="EnemyAudioComponent" type="Node"]
+script = ExtResource("1_vdu31")

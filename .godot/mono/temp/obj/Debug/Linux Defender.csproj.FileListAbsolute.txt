@@ -1,0 +1,41 @@
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\Linux Defender.deps.json
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\Linux Defender.runtimeconfig.json
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\Linux Defender.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\Linux Defender.pdb
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.csproj.AssemblyReference.cache
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.AssemblyInfoInputs.cache
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.AssemblyInfo.cs
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.csproj.CoreCompileInputs.cache
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\refint\Linux Defender.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.pdb
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux Defender.genruntimeconfig.cache
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\ref\Linux Defender.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\Google.Protobuf.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\MySql.Data.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.IO.Pipelines.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.Security.Permissions.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.Text.Json.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.Windows.Extensions.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win-x64\native\comerr64.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win-x64\native\gssapi64.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win-x64\native\krb5_64.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win-x64\native\krbcc64.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\ZstdSharp.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\System.Diagnostics.EventLog.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\bin\Debug\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+C:\Users\Pedro\Documents\linux-defender\.godot\mono\temp\obj\Debug\Linux De.F3C35921.Up2Date

@@ -1,0 +1,227 @@
+[gd_scene load_steps=22 format=3 uid="uid://dgno5llc3t123"]
+
+[ext_resource type="PackedScene" uid="uid://cxpnmrmx2o73o" path="res://player/player.tscn" id="1_f13f4"]
+[ext_resource type="PackedScene" uid="uid://d04s18ufwbcq1" path="res://menus_/death_menu.tscn" id="3_pa6x0"]
+[ext_resource type="PackedScene" uid="uid://dqla4x2etcl6q" path="res://gui/gui_on_game.tscn" id="4_5wfmc"]
+[ext_resource type="PackedScene" uid="uid://bfcycs00kltuh" path="res://debug/gui_debug.tscn" id="5_whprw"]
+[ext_resource type="PackedScene" uid="uid://dscipjeuikm7d" path="res://gui/cards.tscn" id="6_8q4so"]
+[ext_resource type="PackedScene" uid="uid://beojlormkvnpb" path="res://menus_/pause_menu.tscn" id="6_appmx"]
+[ext_resource type="Script" uid="uid://d2c37cyh5phxw" path="res://misc/EnemiesSpawn.cs" id="6_tjv0q"]
+[ext_resource type="Texture2D" uid="uid://c10c5bjby71dk" path="res://src/imgs/background.png" id="7_mbbn3"]
+[ext_resource type="Script" uid="uid://pgpjj6ywubip" path="res://Components/BgPlayer.cs" id="8_u631n"]
+[ext_resource type="Script" uid="uid://dnq8ji6basesg" path="res://misc/MoveEnemies.cs" id="9_wi34w"]
+[ext_resource type="PackedScene" uid="uid://dk83jnj1vegm7" path="res://misc/xp_mesh.tscn" id="11_64aej"]
+[ext_resource type="Script" uid="uid://bkfw7t75mo08v" path="res://misc/VerifyDrops.cs" id="12_4ja60"]
+[ext_resource type="AudioStream" uid="uid://dk2u65848omef" path="res://src/audios/collect.wav" id="12_lic7d"]
+[ext_resource type="AudioStream" uid="uid://dgajgao28y2mr" path="res://src/audios/levelUp.wav" id="13_5ulgo"]
+[ext_resource type="Script" uid="uid://2r4t25ctn3y5" path="res://Components/LevelUp.cs" id="14_pw2rm"]
+[ext_resource type="PackedScene" uid="uid://dbmacvrci87gx" path="res://database.tscn" id="17_2a4ua"]
+[ext_resource type="LabelSettings" uid="uid://ctal5r6v5uik2" path="res://themes/highScore.tres" id="18_vu1f5"]
+
+[sub_resource type="Environment" id="Environment_kfkgu"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_intensity = 0.69
+glow_strength = 1.04
+glow_bloom = 0.16
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+adjustment_enabled = true
+adjustment_contrast = 1.05
+adjustment_saturation = 1.1
+
+[sub_resource type="Animation" id="Animation_1j6p8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6tqsp"]
+resource_name = "rgb"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.50637, 1.49174, 2.50448, 3.47616, 4.48891, 5.47427, 5.99433),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q8jvk"]
+_data = {
+&"RESET": SubResource("Animation_1j6p8"),
+&"rgb": SubResource("Animation_6tqsp")
+}
+
+[node name="Map0" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kfkgu")
+
+[node name="Player" parent="." node_paths=PackedStringArray("cards") instance=ExtResource("1_f13f4")]
+position = Vector2(480, 270)
+cards = NodePath("../CanvasLayer2/Cards")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Cards" parent="CanvasLayer2" node_paths=PackedStringArray("player") instance=ExtResource("6_8q4so")]
+player = NodePath("../../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("cards") instance=ExtResource("6_appmx")]
+cards = NodePath("../../CanvasLayer2/Cards")
+
+[node name="DeathMenu" parent="CanvasLayer" node_paths=PackedStringArray("database", "GuiOnGame", "Player") instance=ExtResource("3_pa6x0")]
+database = NodePath("../../Database")
+GuiOnGame = NodePath("../GuiOnGame")
+Player = NodePath("../../Player")
+Map = "res://maps/Map0.tscn"
+
+[node name="GuiDebug" parent="CanvasLayer" node_paths=PackedStringArray("Player", "EnemiesNode") instance=ExtResource("5_whprw")]
+Player = NodePath("../../Player")
+EnemiesNode = NodePath("../../Enemies")
+
+[node name="GuiOnGame" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_5wfmc")]
+mouse_filter = 2
+player = NodePath("../../Player")
+
+[node name="EnemiesSpawn" type="Timer" parent="." node_paths=PackedStringArray("PointsMesh")]
+process_callback = 0
+wait_time = 4.0
+autostart = true
+script = ExtResource("6_tjv0q")
+PointsMesh = NodePath("../XpMesh")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+motion_offset = Vector2(960, 540)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+modulate = Color(1, 1, 0, 0.0470588)
+texture = ExtResource("7_mbbn3")
+centered = false
+flip_v = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_offset = Vector2(960, 540)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+modulate = Color(0, 1, 0, 0.12549)
+texture = ExtResource("7_mbbn3")
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(2.5, 2.5)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("7_mbbn3")
+centered = false
+
+[node name="BgPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayer/Sprite2D"]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_q8jvk")
+}
+speed_scale = 0.5
+script = ExtResource("8_u631n")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(2.75, 2.75)
+
+[node name="Control" type="Control" parent="ParallaxBackground/ParallaxLayer4"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 480.0
+offset_top = 70.0
+offset_right = 480.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ParallaxBackground/ParallaxLayer4/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -311.0
+offset_right = 311.0
+offset_bottom = 69.0
+grow_horizontal = 2
+text = "Pressione W,A,S D ou ← ↑ ↓ → para se mover
+
+Presssione e segure o 
+botão esq. do mouse para atacar
+
+Esc para pausar"
+label_settings = ExtResource("18_vu1f5")
+horizontal_alignment = 1
+
+[node name="MoveEnemies" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+autostart = true
+script = ExtResource("9_wi34w")
+
+[node name="XpMesh" parent="." node_paths=PackedStringArray("CollectSound") instance=ExtResource("11_64aej")]
+CollectSound = NodePath("../XpSound")
+
+[node name="VerifyDrops" type="Timer" parent="." node_paths=PackedStringArray("xPMesh", "player")]
+process_callback = 0
+wait_time = 0.1
+autostart = true
+script = ExtResource("12_4ja60")
+xPMesh = NodePath("../XpMesh")
+player = NodePath("../Player")
+
+[node name="XpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_lic7d")
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_5ulgo")
+volume_db = -5.0
+script = ExtResource("14_pw2rm")
+
+[node name="Database" parent="." instance=ExtResource("17_2a4ua")]
+
+[connection signal="Death" from="Player" to="CanvasLayer/DeathMenu" method="OnPlayerDeath"]
+[connection signal="InternalDeath" from="Player" to="CanvasLayer/PauseMenu" method="OnPlayerInternalDeath"]
+[connection signal="InternalDeath" from="Player" to="CanvasLayer/GuiOnGame" method="OnPlayerInternalDeath"]
+[connection signal="LifeChange" from="Player" to="CanvasLayer/GuiOnGame" method="OnPlayerLifeChange"]
+[connection signal="PointsChange" from="Player" to="CanvasLayer/GuiOnGame" method="OnPlayerPointsChange"]
+[connection signal="IncreaseLevel" from="CanvasLayer/GuiOnGame" to="CanvasLayer2/Cards" method="OnGuiOnGameIncreaseLevel"]
+[connection signal="IncreaseLevel" from="CanvasLayer/GuiOnGame" to="EnemiesSpawn" method="OnGuiOnGameIncreaseLevel"]
+[connection signal="IncreaseLevel" from="CanvasLayer/GuiOnGame" to="LevelUp" method="OnGuiOnGameIncreaseLevel"]
+[connection signal="timeout" from="EnemiesSpawn" to="EnemiesSpawn" method="OnTimeout"]
+[connection signal="animation_finished" from="ParallaxBackground/ParallaxLayer/Sprite2D/BgPlayer" to="ParallaxBackground/ParallaxLayer/Sprite2D/BgPlayer" method="OnAnimationFinished"]
+[connection signal="timeout" from="MoveEnemies" to="MoveEnemies" method="OnTimeout"]
+[connection signal="timeout" from="VerifyDrops" to="VerifyDrops" method="OnTimeout"]

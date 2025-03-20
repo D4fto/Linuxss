@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkckpis5t1utb"]
+
+[ext_resource type="Script" uid="uid://bwg6ijl1w68o" path="res://gui/Card.cs" id="1_p28bi"]
+[ext_resource type="Texture2D" uid="uid://cwch1deogio3s" path="res://src/imgs/BaseCard.png" id="1_sjmt5"]
+[ext_resource type="Texture2D" uid="uid://c3juaw2o7lqte" path="res://src/imgs/cards/12.png" id="3_ln86l"]
+[ext_resource type="FontFile" uid="uid://cl160oerrt7bv" path="res://src/fonts/PressStart2P-Regular.ttf" id="3_qp2vu"]
+
+[sub_resource type="FontVariation" id="FontVariation_iru0e"]
+base_font = ExtResource("3_qp2vu")
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqowp"]
+font = SubResource("FontVariation_iru0e")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_malh0"]
+font = SubResource("FontVariation_iru0e")
+font_size = 8
+
+[node name="Card" type="Control"]
+modulate = Color(0.15, 0.886667, 1, 1)
+custom_minimum_size = Vector2(165, 220)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 132.0
+offset_bottom = 176.0
+script = ExtResource("1_p28bi")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_sjmt5")
+texture_pressed = ExtResource("1_sjmt5")
+texture_hover = ExtResource("1_sjmt5")
+texture_disabled = ExtResource("1_sjmt5")
+texture_focused = ExtResource("1_sjmt5")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -33.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+mouse_default_cursor_shape = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureButton/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_ln86l")
+stretch_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureButton/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 1.45
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Label" type="Label" parent="TextureButton/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.45
+text = "Aumenta o tamanho do seu ataque em 50%."
+label_settings = SubResource("LabelSettings_oqowp")
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 19.0
+offset_top = 188.0
+offset_right = 121.0
+offset_bottom = 196.0
+scale = Vector2(1.25, 1.25)
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.45
+label_settings = SubResource("LabelSettings_malh0")
+autowrap_mode = 3
+
+[connection signal="button_down" from="TextureButton" to="." method="OnTextureButtonButtonDown"]
+[connection signal="mouse_entered" from="TextureButton/VBoxContainer" to="." method="OnVBoxContainerMouseEntered"]
+[connection signal="mouse_exited" from="TextureButton/VBoxContainer" to="." method="OnVBoxContainerMouseExited"]

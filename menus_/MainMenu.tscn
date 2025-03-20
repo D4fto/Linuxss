@@ -1,0 +1,217 @@
+[gd_scene load_steps=17 format=3 uid="uid://cbt3ip8eq1ryh"]
+
+[ext_resource type="Script" uid="uid://c7p1dmdq4bjb6" path="res://menus_/MainMenu.cs" id="1_kolrj"]
+[ext_resource type="Texture2D" uid="uid://c10c5bjby71dk" path="res://src/imgs/background.png" id="2_txpmb"]
+[ext_resource type="Script" uid="uid://pgpjj6ywubip" path="res://Components/BgPlayer.cs" id="3_ja363"]
+[ext_resource type="Script" uid="uid://cyduknc5g3mgk" path="res://menus_/MenuMouseEffect.cs" id="4_qhq1m"]
+[ext_resource type="Theme" uid="uid://bf0p2054wakan" path="res://themes/Vbox.tres" id="5_0smkx"]
+[ext_resource type="PackedScene" uid="uid://c1b3f0s148uog" path="res://gui/basic_button.tscn" id="6_xgk1w"]
+[ext_resource type="LabelSettings" uid="uid://dp2qsxnhoufj1" path="res://src/fonts/MenuTitle.tres" id="7_636hw"]
+[ext_resource type="Shader" uid="uid://bfu50fwbmtjqo" path="res://menus_/Glitch.gdshader" id="8_v7b1w"]
+[ext_resource type="PackedScene" uid="uid://bombj4bmgqx6u" path="res://gui/high_score.tscn" id="9_ir2pr"]
+[ext_resource type="LabelSettings" uid="uid://ctal5r6v5uik2" path="res://themes/highScore.tres" id="11_7dncg"]
+[ext_resource type="PackedScene" uid="uid://dbmacvrci87gx" path="res://database.tscn" id="12_vcq4c"]
+
+[sub_resource type="Environment" id="Environment_2xkoj"]
+background_mode = 3
+ssr_fade_in = 0.559819
+ssr_fade_out = 2.73208
+ssr_depth_tolerance = 86.31
+glow_enabled = true
+glow_intensity = 0.69
+glow_strength = 1.04
+glow_bloom = 0.16
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.1
+
+[sub_resource type="Animation" id="Animation_1j6p8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6tqsp"]
+resource_name = "rgb"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.50637, 1.49174, 2.50448, 3.47616, 4.48891, 5.47427, 5.99433),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q8jvk"]
+_data = {
+&"RESET": SubResource("Animation_1j6p8"),
+&"rgb": SubResource("Animation_6tqsp")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c684e"]
+shader = ExtResource("8_v7b1w")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("FirstButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kolrj")
+FirstButton = NodePath("CanvasLayer/VBoxContainer/StartButton")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2xkoj")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Node2D"]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+motion_offset = Vector2(960, 540)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer3"]
+modulate = Color(1, 1, 0, 0.0470588)
+texture = ExtResource("2_txpmb")
+centered = false
+flip_v = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+motion_offset = Vector2(960, 540)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer2"]
+modulate = Color(0, 1, 0, 0.12549)
+texture = ExtResource("2_txpmb")
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+motion_scale = Vector2(2.5, 2.5)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_txpmb")
+centered = false
+
+[node name="BgPlayer" type="AnimationPlayer" parent="Node2D/ParallaxBackground/ParallaxLayer/Sprite2D"]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_q8jvk")
+}
+speed_scale = 0.5
+script = ExtResource("3_ja363")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+position_smoothing_enabled = true
+
+[node name="Marker2D" type="Marker2D" parent="Node2D/Camera2D"]
+script = ExtResource("4_qhq1m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = 60.0
+offset_right = 116.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_0smkx")
+alignment = 1
+
+[node name="StartButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("6_xgk1w")]
+layout_mode = 2
+text = "JOGAR"
+
+[node name="HighscoreButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("6_xgk1w")]
+layout_mode = 2
+text = "HIGHSCORE"
+
+[node name="QuitButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("6_xgk1w")]
+visible = false
+layout_mode = 2
+text = "QUIT"
+
+[node name="CreditButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("6_xgk1w")]
+layout_mode = 2
+text = "CREDITOS"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -32.0
+offset_right = 448.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+text = "LINUX DEFENDER"
+label_settings = ExtResource("7_636hw")
+justification_flags = 171
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PanelContainer/Label"]
+material = SubResource("ShaderMaterial_c684e")
+layout_mode = 2
+offset_right = 896.0
+offset_bottom = 64.0
+color = Color(1, 1, 1, 0)
+
+[node name="HighScore" parent="CanvasLayer" node_paths=PackedStringArray("database") instance=ExtResource("9_ir2pr")]
+database = NodePath("../../Database")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 75.0
+grow_vertical = 0
+text = " V1.0"
+label_settings = ExtResource("11_7dncg")
+
+[node name="Database" parent="." instance=ExtResource("12_vcq4c")]
+
+[connection signal="animation_finished" from="Node2D/ParallaxBackground/ParallaxLayer/Sprite2D/BgPlayer" to="Node2D/ParallaxBackground/ParallaxLayer/Sprite2D/BgPlayer" method="OnAnimationFinished"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HighscoreButton" to="CanvasLayer/HighScore" method="OnHighscoreButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/QuitButton" to="." method="OnQuitButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/CreditButton" to="." method="OnCreditButtonPressed"]

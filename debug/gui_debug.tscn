@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfcycs00kltuh"]
+
+[ext_resource type="Script" uid="uid://bxms3ihg4o61p" path="res://debug/GuiDebug.cs" id="1_7yp14"]
+[ext_resource type="Script" uid="uid://f5pcggf23gec" path="res://debug/FPS.cs" id="1_ninfy"]
+[ext_resource type="Script" uid="uid://bmriuo6vmrols" path="res://debug/EnemiesNumber.cs" id="2_1wp1q"]
+[ext_resource type="Script" uid="uid://d2mvdwy6df82v" path="res://debug/CountEnemies.cs" id="4_0b8wn"]
+[ext_resource type="Script" uid="uid://cqx5ns6c82eth" path="res://debug/Kills.cs" id="5_4cbrt"]
+[ext_resource type="Script" uid="uid://cfiwr8yc8baf1" path="res://debug/EnemyLifeModifier.cs" id="6_4jqbp"]
+[ext_resource type="Script" uid="uid://b6j7hnxa2s2jn" path="res://debug/EnemySpeedModifier.cs" id="7_6ajum"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1dqm0"]
+font_size = 8
+
+[node name="GuiDebug" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7yp14")
+
+[node name="FPS" type="Label" parent="."]
+z_index = 99
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 12.0
+text = "jisdjsd"
+label_settings = SubResource("LabelSettings_1dqm0")
+script = ExtResource("1_ninfy")
+
+[node name="EnemiesNumber" type="Label" parent="."]
+z_index = 99
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Enemies: 0"
+script = ExtResource("2_1wp1q")
+
+[node name="Update" type="Timer" parent="."]
+process_callback = 0
+script = ExtResource("4_0b8wn")
+
+[node name="Kills" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -44.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Kills: 0"
+script = ExtResource("5_4cbrt")
+
+[node name="EnemyLifeModifier" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_top = -62.09
+offset_bottom = -39.09
+grow_horizontal = 0
+grow_vertical = 0
+text = "Enemy Life Modifier: 0"
+script = ExtResource("6_4jqbp")
+
+[node name="EnemySpeedModifier" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -79.965
+offset_bottom = -56.965
+grow_horizontal = 0
+grow_vertical = 0
+text = "Enemy Speed Modifier: 0"
+script = ExtResource("7_6ajum")
+
+[connection signal="DebugOff" from="." to="FPS" method="OnGuiDebugDebugOff"]
+[connection signal="DebugOff" from="." to="Update" method="OnGuiDebugDebugOff"]
+[connection signal="DebugOn" from="." to="FPS" method="OnGuiDebugDebugOn"]
+[connection signal="DebugOn" from="." to="Update" method="OnGuiDebugDebugOn"]
+[connection signal="timeout" from="Update" to="EnemiesNumber" method="OnUpdateTimeout"]
+[connection signal="timeout" from="Update" to="Kills" method="OnUpdateTimeout"]
+[connection signal="timeout" from="Update" to="EnemyLifeModifier" method="OnUpdateTimeout"]
+[connection signal="timeout" from="Update" to="EnemySpeedModifier" method="OnUpdateTimeout"]

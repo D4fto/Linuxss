@@ -1,0 +1,254 @@
+[gd_scene load_steps=22 format=3 uid="uid://dnc0ylvkh1ap1"]
+
+[ext_resource type="Script" uid="uid://bw8d8dkqyq7qy" path="res://menus_/CreditMenu.cs" id="1_jnf6x"]
+[ext_resource type="Texture2D" uid="uid://c10c5bjby71dk" path="res://src/imgs/background.png" id="2_sp6yq"]
+[ext_resource type="Script" uid="uid://pgpjj6ywubip" path="res://Components/BgPlayer.cs" id="3_t46gp"]
+[ext_resource type="Script" uid="uid://cyduknc5g3mgk" path="res://menus_/MenuMouseEffect.cs" id="4_godbe"]
+[ext_resource type="FontFile" uid="uid://cl160oerrt7bv" path="res://src/fonts/PressStart2P-Regular.ttf" id="5_u8uda"]
+[ext_resource type="Theme" uid="uid://bf0p2054wakan" path="res://themes/Vbox.tres" id="6_0pf87"]
+[ext_resource type="PackedScene" uid="uid://c1b3f0s148uog" path="res://gui/basic_button.tscn" id="7_6ig1y"]
+[ext_resource type="Texture2D" uid="uid://bhusr80x7507y" path="res://src/imgs/PORTFÓLIO (1).png" id="9_tr5hw"]
+[ext_resource type="Texture2D" uid="uid://bv0tvj2sv4mwx" path="res://src/imgs/githubicon.png" id="10_5n465"]
+[ext_resource type="Texture2D" uid="uid://cr7yiarpi5ybd" path="res://src/imgs/UTFPR.png" id="11_u22b6"]
+
+[sub_resource type="Environment" id="Environment_2xkoj"]
+background_mode = 3
+ssr_fade_in = 0.559819
+ssr_fade_out = 2.73208
+ssr_depth_tolerance = 86.31
+glow_enabled = true
+glow_intensity = 0.69
+glow_strength = 1.04
+glow_bloom = 0.16
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.1
+
+[sub_resource type="Animation" id="Animation_1j6p8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6tqsp"]
+resource_name = "rgb"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.50637, 1.49174, 2.50448, 3.47616, 4.48891, 5.47427, 5.99433),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 1, 1), Color(0, 0, 1, 1), Color(0, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q8jvk"]
+_data = {
+&"RESET": SubResource("Animation_1j6p8"),
+&"rgb": SubResource("Animation_6tqsp")
+}
+
+[sub_resource type="FontVariation" id="FontVariation_itr44"]
+base_font = ExtResource("5_u8uda")
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3q41"]
+font = SubResource("FontVariation_itr44")
+font_size = 24
+font_color = Color(1, 1, 0, 1)
+shadow_size = 4
+shadow_color = Color(1, 0.52549, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxsgk"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(1, 0.52549, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="FontVariation" id="FontVariation_un0kn"]
+base_font = ExtResource("5_u8uda")
+spacing_space = -5
+spacing_top = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_tud0j"]
+font = SubResource("FontVariation_un0kn")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ykcdv"]
+font = SubResource("FontVariation_un0kn")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ulcy"]
+font = SubResource("FontVariation_itr44")
+font_color = Color(1, 1, 0, 1)
+shadow_color = Color(1, 0.52549, 0, 1)
+
+[node name="CreditMenu" type="Control" node_paths=PackedStringArray("FirstButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jnf6x")
+FirstButton = NodePath("CanvasLayer/VBoxContainer/MainMenuButton")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2xkoj")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Node2D"]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+motion_offset = Vector2(960, 540)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer3"]
+modulate = Color(1, 1, 0, 0.0470588)
+texture = ExtResource("2_sp6yq")
+centered = false
+flip_v = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+motion_offset = Vector2(960, 540)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer2"]
+modulate = Color(0, 1, 0, 0.12549)
+texture = ExtResource("2_sp6yq")
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+motion_scale = Vector2(2.5, 2.5)
+motion_mirroring = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_sp6yq")
+centered = false
+
+[node name="BgPlayer" type="AnimationPlayer" parent="Node2D/ParallaxBackground/ParallaxLayer/Sprite2D"]
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_q8jvk")
+}
+speed_scale = 0.5
+script = ExtResource("3_t46gp")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+position_smoothing_enabled = true
+
+[node name="Marker2D" type="Marker2D" parent="Node2D/Camera2D"]
+script = ExtResource("4_godbe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -25.5
+offset_right = 300.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "FEITO POR:
+
+Pedro Henrique 
+Tunes Degasperi"
+label_settings = SubResource("LabelSettings_v3q41")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = 70.0
+offset_right = 116.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_0pf87")
+alignment = 1
+
+[node name="MainMenuButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("7_6ig1y")]
+layout_mode = 2
+text = "MENU"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 785.0
+offset_top = 322.0
+offset_right = 944.0
+offset_bottom = 524.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nxsgk")
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "MEU 
+PORTFOLIO"
+label_settings = SubResource("LabelSettings_tud0j")
+horizontal_alignment = 1
+
+[node name="Portfólio(1)" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(939, 520)
+scale = Vector2(0.745, 0.745)
+texture = ExtResource("9_tr5hw")
+offset = Vector2(-100.671, -100.671)
+
+[node name="Githubicon" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(808, 229)
+scale = Vector2(0.279297, 0.279297)
+texture = ExtResource("10_5n465")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 832.0
+offset_top = 216.0
+offset_right = 940.0
+offset_bottom = 244.0
+pivot_offset = Vector2(0, 13)
+text = "GITHUB"
+label_settings = SubResource("LabelSettings_ykcdv")
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 817.0
+offset_top = 256.0
+offset_right = 913.0
+offset_bottom = 279.0
+text = "@D4fto"
+label_settings = SubResource("LabelSettings_0ulcy")
+
+[node name="Utfpr" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(112, 488)
+scale = Vector2(1.88095, 1.88095)
+texture = ExtResource("11_u22b6")
+
+[connection signal="animation_finished" from="Node2D/ParallaxBackground/ParallaxLayer/Sprite2D/BgPlayer" to="Node2D/ParallaxBackground/ParallaxLayer/Sprite2D/BgPlayer" method="OnAnimationFinished"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/MainMenuButton" to="." method="OnMainMenuButtonPressed"]

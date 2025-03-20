@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bgde6bwpa6rcw"]
+
+[ext_resource type="FontFile" uid="uid://cl160oerrt7bv" path="res://src/fonts/PressStart2P-Regular.ttf" id="1_t3hme"]
+
+[sub_resource type="FontVariation" id="FontVariation_wajuy"]
+base_font = ExtResource("1_t3hme")
+spacing_top = 10
+spacing_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa55n"]
+bg_color = Color(1, 1, 0.392157, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.435294, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7omnf"]
+bg_color = Color(1, 1, 0.392157, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.435294, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2c214"]
+bg_color = Color(1, 1, 0, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.435294, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yveng"]
+bg_color = Color(1, 0.584314, 0.192157, 1)
+border_color = Color(1, 0.435294, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6a01a"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6lt8"]
+bg_color = Color(1, 1, 1, 1)
+
+[resource]
+default_font = ExtResource("1_t3hme")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/fonts/font = SubResource("FontVariation_wajuy")
+Button/styles/disabled = null
+Button/styles/focus = SubResource("StyleBoxFlat_fa55n")
+Button/styles/hover = SubResource("StyleBoxFlat_7omnf")
+Button/styles/normal = SubResource("StyleBoxFlat_2c214")
+Button/styles/pressed = SubResource("StyleBoxFlat_yveng")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_6a01a")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_r6lt8")

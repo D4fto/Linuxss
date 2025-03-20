@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=3 format=3 uid="uid://ctal5r6v5uik2"]
+
+[ext_resource type="FontFile" uid="uid://cl160oerrt7bv" path="res://src/fonts/PressStart2P-Regular.ttf" id="1_u2csb"]
+
+[sub_resource type="FontVariation" id="FontVariation_un0kn"]
+base_font = ExtResource("1_u2csb")
+spacing_space = -5
+spacing_top = 5
+
+[resource]
+font = SubResource("FontVariation_un0kn")

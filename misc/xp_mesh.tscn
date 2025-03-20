@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk83jnj1vegm7"]
+
+[ext_resource type="Texture2D" uid="uid://c8wb1ijffxrl2" path="res://src/imgs/coin.png" id="1_wp3kv"]
+[ext_resource type="Script" uid="uid://b6kv8q7hpm0r0" path="res://misc/XPMesh.cs" id="2_k4cup"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_x8l51"]
+size = Vector2(8, -12)
+
+[sub_resource type="MultiMesh" id="MultiMesh_pp2fx"]
+use_colors = true
+use_custom_data = true
+mesh = SubResource("QuadMesh_x8l51")
+
+[node name="XPmesh" type="MultiMeshInstance2D"]
+multimesh = SubResource("MultiMesh_pp2fx")
+texture = ExtResource("1_wp3kv")
+script = ExtResource("2_k4cup")

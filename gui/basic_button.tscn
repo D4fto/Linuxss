@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1b3f0s148uog"]
+
+[ext_resource type="Theme" uid="uid://bgde6bwpa6rcw" path="res://themes/MainMenu.tres" id="1_alkn5"]
+[ext_resource type="Script" uid="uid://ou8kkyhadq1q" path="res://gui/BasicButton.cs" id="1_i5ig8"]
+
+[node name="BasicButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_alkn5")
+script = ExtResource("1_i5ig8")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
