@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Linux Defender")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7faf2656ef60b66a5418da74a99e64039844257d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Linux Defender")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Linux Defender")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
